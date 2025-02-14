@@ -15,7 +15,7 @@ interactable_icon = NodePath("Green-button")
 shape = SubResource("RectangleShape2D_awung")
 
 [node name="Green-button" type="Sprite2D" parent="."]
-position = Vector2(0, -64)
+position = Vector2(-2, -75)
 texture = ExtResource("2_qiqri")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

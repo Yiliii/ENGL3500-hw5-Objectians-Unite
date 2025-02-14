@@ -28,7 +28,8 @@ func _process(delta: float) -> void:
 
 
 func _on_interaction_area_interacted() -> void:
-	self.visible = true
+	if Globals.key_fragments >= 5:
+		self.visible = true 
 	pass # Replace with function body.
 
 

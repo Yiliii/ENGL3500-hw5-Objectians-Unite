@@ -23,10 +23,6 @@ func _process(delta: float) -> void:
 
 # SUBCLASSES
 
-
-
-
-
 func _on_interaction_area_interacted() -> void:
 	self.visible = true
 	pass # Replace with function body.

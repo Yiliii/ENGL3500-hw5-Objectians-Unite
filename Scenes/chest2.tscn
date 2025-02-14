@@ -1,9 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://m3kkvah8pbk6"]
+[gd_scene load_steps=5 format=3 uid="uid://bvgsrjoliahg4"]
 
-[ext_resource type="TileSet" uid="uid://ckkmoyss7e8rf" path="res://Art/pixel_art_top_down.tres" id="1_my3i5"]
-[ext_resource type="PackedScene" uid="uid://b6lm3xtuv5nrg" path="res://Scenes/interaction_area.tscn" id="2_uiyb5"]
-[ext_resource type="Script" path="res://Scripts/interactable_chest.gd" id="2_ys3tl"]
-[ext_resource type="Script" path="res://Scripts/interactable_control_chest.gd" id="4_3pi8o"]
+[ext_resource type="TileSet" uid="uid://ckkmoyss7e8rf" path="res://Art/pixel_art_top_down.tres" id="1_ael5j"]
+[ext_resource type="Script" path="res://Scripts/interactable_chest.gd" id="2_ba18f"]
+[ext_resource type="PackedScene" uid="uid://b6lm3xtuv5nrg" path="res://Scenes/interaction_area.tscn" id="3_8xc1s"]
+[ext_resource type="Script" path="res://Scripts/interactable_control_door.gd" id="4_hc6ck"]
 
 [node name="Chest" type="Node2D"]
 
@@ -11,17 +11,17 @@
 y_sort_enabled = true
 scale = Vector2(4, 4)
 tile_map_data = PackedByteArray(0, 0, 0, 0, 255, 255, 2, 0, 6, 0, 0, 0, 0, 0)
-tile_set = ExtResource("1_my3i5")
+tile_set = ExtResource("1_ael5j")
 
 [node name="OpenChest" type="TileMapLayer" parent="."]
 visible = false
 y_sort_enabled = true
 scale = Vector2(4, 4)
 tile_map_data = PackedByteArray(0, 0, 0, 0, 255, 255, 2, 0, 6, 0, 4, 0, 0, 0)
-tile_set = ExtResource("1_my3i5")
-script = ExtResource("2_ys3tl")
+tile_set = ExtResource("1_ael5j")
+script = ExtResource("2_ba18f")
 
-[node name="InteractionArea" parent="." instance=ExtResource("2_uiyb5")]
+[node name="InteractionArea" parent="." instance=ExtResource("3_8xc1s")]
 position = Vector2(33, -34)
 
 [node name="Control" type="Control" parent="."]
@@ -29,7 +29,7 @@ layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
-script = ExtResource("4_3pi8o")
+script = ExtResource("4_hc6ck")
 
 [node name="Panel" type="Panel" parent="Control"]
 layout_mode = 1
@@ -55,7 +55,7 @@ offset_top = 10.88
 offset_right = -29.2
 offset_bottom = -19.12
 theme_override_font_sizes/font_size = 24
-text = "You found a key fragment!"
+text = "You find a key piece!"
 
 [connection signal="body_exited" from="InteractionArea" to="OpenChest" method="_on_interaction_area_body_exited"]
 [connection signal="body_exited" from="InteractionArea" to="Control" method="_on_interaction_area_body_exited"]
