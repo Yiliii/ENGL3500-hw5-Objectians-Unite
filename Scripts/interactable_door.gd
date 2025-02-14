@@ -15,6 +15,8 @@ extends TileMapLayer
 func _ready() -> void:
 	self.visible = false
 	collision_enabled = false
+	get_parent().get_node("ClosedDoor").visible = true
+	get_parent().get_node("ClosedDoor").collision_enabled = true
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -23,16 +25,15 @@ func _process(delta: float) -> void:
 
 # SUBCLASSES
 
-
-
-
-
 func _on_interaction_area_interacted() -> void:
 	if Globals.key_fragments >= 5:
+		get_parent().get_node("ClosedDoor").visible = false
+		get_parent().get_node("ClosedDoor").collision_enabled = false
 		self.visible = true 
 		collision_enabled = true
 
 
 func _on_interaction_area_body_exited(body:Node2D) -> void:
-	self.visible = false
-	collision_enabled = false
+	if Globals.key_fragments >= 5:
+		self.visible = true
+		collision_enabled = false

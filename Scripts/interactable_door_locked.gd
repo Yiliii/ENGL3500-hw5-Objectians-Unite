@@ -24,13 +24,18 @@ func _process(delta: float) -> void:
 
 # SUBCLASSES
 
-func _on_interaction_area_interacted():
+func _on_interaction_area_interacted() -> void:
+	print("Hello from Godot!")
 	if Globals.key_fragments >= 5:
 		self.visible = false  # Hide locked door
-		get_parent().get_node("OpenDoor").visible = true  # Show unlocked door
+		self.collision_enabled = false
 	else:
+		self.visible = true
+		self.collision_enabled = true
 		if interactable_control:
 			interactable_control.show_locked_door_message()
 
 func _on_interaction_area_body_exited(body:Node2D) -> void:
 	self.visible = true
+	self.collision_enabled = true
+	pass
