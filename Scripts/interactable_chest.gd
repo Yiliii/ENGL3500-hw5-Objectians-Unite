@@ -6,8 +6,10 @@ extends TileMapLayer
 # @EXPORT VARIABLES
 @export var fragment_count = 1  # Number of fragments in the chest
 # PUBLIC VARIABLES
+var opened = false # Track if chest has been opened
 # PRIVATE VARIABLES
 # @ONREADY VARIABLES
+@onready var label = get_node_or_null("/Chest/Control")
 
 # PUBLIC METHODS
 # PRIVATE METHODS
@@ -24,15 +26,17 @@ func _process(delta: float) -> void:
 
 # SUBCLASSES
 
-
-
-
-
 func _on_interaction_area_interacted() -> void:
-	self.visible = true
-	Globals.key_fragments += fragment_count
+	if not opened:
+		self.visible = true
+		Globals.key_fragments += fragment_count
+		opened = true
+		if label:
+			label.update_label("You found a key fragment!")
+	else:
+		if label:
+			label.update_label("You have opened this chest already")
 
 
 func _on_interaction_area_body_exited(body:Node2D) -> void:
 	self.visible = false
-	pass # Replace with function body.

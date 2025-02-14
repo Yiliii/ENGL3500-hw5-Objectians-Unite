@@ -8,6 +8,7 @@ extends TileMapLayer
 # PRIVATE VARIABLES
 # @ONREADY VARIABLES
 @onready var interactable_control = get_node("/Door/Control") 
+@onready var collision = $ClosedDoor
 
 # PUBLIC METHODS
 # PRIVATE METHODS
@@ -26,10 +27,13 @@ func _process(delta: float) -> void:
 func _on_interaction_area_interacted():
 	if Globals.key_fragments >= 5:
 		self.visible = false  # Hide locked door
+		collision.disabled = true  # Disable collision so player can pass
 		get_parent().get_node("OpenDoor").visible = true  # Show unlocked door
 	else:
+		collision.disabled = true
 		if interactable_control:
 			interactable_control.show_locked_door_message()
 
 func _on_interaction_area_body_exited(body:Node2D) -> void:
+	collision.disabled = false
 	self.visible = true
