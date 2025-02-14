@@ -14,7 +14,7 @@ extends TileMapLayer
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	self.visible = false
-	pass # Replace with function body.
+	collision_enabled = false
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -30,9 +30,9 @@ func _process(delta: float) -> void:
 func _on_interaction_area_interacted() -> void:
 	if Globals.key_fragments >= 5:
 		self.visible = true 
-	pass # Replace with function body.
+		collision_enabled = true
 
 
 func _on_interaction_area_body_exited(body:Node2D) -> void:
 	self.visible = false
-	pass # Replace with function body.
+	collision_enabled = false
