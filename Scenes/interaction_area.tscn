@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://clnymt2p8aqxf" path="res://Art/green-button.png" id="2_qiqri"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_awung"]
-size = Vector2(304, 272)
+size = Vector2(260, 245.5)
 
 [node name="InteractionArea" type="Area2D" node_paths=PackedStringArray("interactable_icon")]
 position = Vector2(1856, 1472)
@@ -12,6 +12,7 @@ script = ExtResource("1_kh00d")
 interactable_icon = NodePath("Green-button")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 29.25)
 shape = SubResource("RectangleShape2D_awung")
 
 [node name="Green-button" type="Sprite2D" parent="."]

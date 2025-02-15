@@ -1,0 +1,66 @@
+[gd_scene load_steps=5 format=4 uid="uid://b50iuienwt12i"]
+
+[ext_resource type="TileSet" uid="uid://ckkmoyss7e8rf" path="res://Art/pixel_art_top_down.tres" id="1_m4l2c"]
+[ext_resource type="Script" path="res://Scripts/interactable_portal_statue.gd" id="2_dofcw"]
+[ext_resource type="PackedScene" uid="uid://b6lm3xtuv5nrg" path="res://Scenes/interaction_area.tscn" id="3_gc7s3"]
+[ext_resource type="Script" path="res://Scripts/interactable_control_statue.gd" id="4_p64m6"]
+
+[node name="Statue" type="Node2D"]
+
+[node name="Portal" type="TileMapLayer" parent="."]
+position = Vector2(-4, -53)
+scale = Vector2(2.23708, 1.60488)
+tile_map_data = PackedByteArray("AAD9/wUAAgAWABEAAAD9/wYAAgAWABIAAAD9/wcAAgAWABMAAAD9/wgAAgAWABQAAAD+/wUAAgAXABEAAAD+/wYAAgAXABIAAAD+/wcAAgAXABMAAAD+/wgAAgAXABQAAAD//wQAAgAYABAAAAD//wUAAgAYABEAAAD//wYAAgAYABIAAAD//wcAAgAYABMAAAD//wgAAgAYABQAAAD//wkAAgAYABUAAAAAAAQAAgAZABAAAAAAAAUAAgAZABEAAAAAAAYAAgAZABIAAAAAAAcAAgAZABMAAAAAAAgAAgAZABQAAAAAAAkAAgAZABUAAAABAAUAAgAaABEAAAABAAYAAgAaABIAAAABAAcAAgAaABMAAAABAAgAAgAaABQAAAACAAUAAgAbABEAAAACAAYAAgAbABIAAAACAAcAAgAbABMAAAACAAgAAgAbABQAAAA=")
+tile_set = ExtResource("1_m4l2c")
+script = ExtResource("2_dofcw")
+
+[node name="Statue" type="TileMapLayer" parent="."]
+y_sort_enabled = true
+scale = Vector2(4, 4)
+tile_map_data = PackedByteArray("AAD+/wEAAgAbAAQAAAD+/wIAAgAbAAUAAAD///7/AgAcAAEAAAD/////AgAcAAIAAAD//wAAAgAcAAMAAAD//wEAAgAcAAQAAAD//wIAAgAcAAUAAAAAAP7/AgAdAAEAAAAAAP//AgAdAAIAAAAAAAAAAgAdAAMAAAAAAAEAAgAdAAQAAAAAAAIAAgAdAAUAAAABAAEAAgAeAAQAAAABAAIAAgAeAAUAAAA=")
+tile_set = ExtResource("1_m4l2c")
+
+[node name="InteractionArea" parent="." instance=ExtResource("3_gc7s3")]
+position = Vector2(0, 0)
+scale = Vector2(1.27706, 1.75132)
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("4_p64m6")
+
+[node name="Panel" type="Panel" parent="Control"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -2.9
+anchor_top = -7.05
+anchor_right = 4.57
+anchor_bottom = -6.05
+offset_left = -37.0
+offset_top = -10.0
+offset_right = -35.8
+offset_bottom = 56.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="Control"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -2.812
+anchor_top = -6.947
+anchor_right = 4.555
+anchor_bottom = -4.447
+offset_left = -11.52
+offset_top = 16.88
+offset_right = -65.2
+offset_bottom = -12.12
+theme_override_font_sizes/font_size = 24
+text = "Well done my child..."
+autowrap_mode = 3
+
+[connection signal="body_exited" from="InteractionArea" to="Statue" method="_on_interaction_area_body_exited"]
+[connection signal="body_exited" from="InteractionArea" to="Control" method="_on_interaction_area_body_exited"]
+[connection signal="interacted" from="InteractionArea" to="Statue" method="_on_interaction_area_interacted"]
+[connection signal="interacted" from="InteractionArea" to="Control" method="_on_interaction_area_interacted"]
