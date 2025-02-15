@@ -7,7 +7,7 @@ extends Control
 # PUBLIC VARIABLES
 # PRIVATE VARIABLES
 # @ONREADY VARIABLES
-@onready var label: Label = $Chest/Label
+@onready var label: Label = $Label
 
 # PUBLIC METHODS
 # PRIVATE METHODS

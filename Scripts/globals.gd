@@ -6,7 +6,7 @@ enum InputDirection {UP, DOWN, LEFT, RIGHT}
 # CONSTANTS
 # @EXPORT VARIABLES
 # PUBLIC VARIABLES
-var key_fragments = 0
+var key_fragments = 4
 # PRIVATE VARIABLES
 # @ONREADY VARIABLES
 

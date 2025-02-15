@@ -4,12 +4,17 @@ extends Control
 
 func _ready() -> void:
 	self.visible = false  # Initially hidden
-	update_label()  # Ensure the label is updated at the start
+	
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	update_label()
 
 # Function to update the label when fragments change
 func update_label():
-	if label:
+	if Globals.key_fragments < 5:
 		label.text = "It's locked! You currently have " + str(Globals.key_fragments) + "/5 key fragments"
+	if Globals.key_fragments >= 5:
+		label.text = "The door is already unlocked! You collected all " + str(Globals.key_fragments) + "/5 key fragments"
 
 # Function to be called when interacting with the door
 func _on_interaction_area_interacted() -> void:

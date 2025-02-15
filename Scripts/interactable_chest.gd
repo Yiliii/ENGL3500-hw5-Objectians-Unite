@@ -39,4 +39,4 @@ func _on_interaction_area_interacted() -> void:
 
 
 func _on_interaction_area_body_exited(body:Node2D) -> void:
-	self.visible = false
+	self.visible = true
